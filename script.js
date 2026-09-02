@@ -1,0 +1,308 @@
+const DATA_URL = "commands.json";
+
+const listEl = document.getElementById("list");
+const emptyEl = document.getElementById("empty");
+const searchEl = document.getElementById("search");
+const counterEl = document.getElementById("counter");
+
+let items = [];
+let copiedResetTimer = null;
+
+let activeAudio = null;
+let activeAudioButton = null;
+
+function normalise(item) {
+  const image =
+    typeof item.image === "string"
+      ? { src: item.image.trim(), alt: "" }
+      : item.image?.src
+        ? {
+            src: String(item.image.src).trim(),
+            alt: String(item.image.alt ?? "").trim()
+          }
+        : null;
+
+  return {
+    command: String(item.command ?? "").trim(),
+    description: String(item.description ?? "").trim(),
+    image,
+    audio: item.audio?.src
+      ? {
+          src: String(item.audio.src).trim()
+        }
+      : null
+  };
+}
+
+function stopActiveAudio() {
+  if (activeAudio) {
+    activeAudio.pause();
+    activeAudio.currentTime = 0;
+    activeAudio = null;
+  }
+
+  if (activeAudioButton) {
+    activeAudioButton.classList.remove("playing");
+    activeAudioButton.setAttribute("aria-label", "Play audio");
+    activeAudioButton = null;
+  }
+}
+
+function toggleAudio(src, button) {
+  if (activeAudio && activeAudioButton === button && !activeAudio.paused) {
+    stopActiveAudio();
+    return;
+  }
+
+  stopActiveAudio();
+
+  const audio = new Audio(src);
+  audio.preload = "metadata";
+
+  activeAudio = audio;
+  activeAudioButton = button;
+
+  button.classList.add("playing");
+  button.setAttribute("aria-label", "Pause preview");
+
+  audio.addEventListener("ended", () => {
+    stopActiveAudio();
+  });
+
+  audio.addEventListener("error", () => {
+    console.error("Couldn't play:", src);
+    stopActiveAudio();
+  });
+
+  audio.play().catch(err => {
+    console.error("Audio couldn't be played:", err);
+    stopActiveAudio();
+  });
+}
+
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#39;"
+  }[c]));
+}
+
+async function loadData() {
+  const res = await fetch(DATA_URL, { cache: "no-store" });
+  if (!res.ok) throw new Error("Couldn't load commands.json");
+  return res.json();
+}
+
+async function copyToClipboard(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (e) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+
+    try {
+      document.execCommand("copy");
+      return true;
+    } catch (err) {
+      return false;
+    } finally {
+      document.body.removeChild(ta);
+    }
+  }
+}
+
+function setCopiedState(row, enabled) {
+  row.classList.toggle("copied", enabled);
+}
+
+function createAudioButton(item) {
+  if (!item.audio) return "";
+
+  return `
+    <button
+      class="audio-preview"
+      type="button"
+      aria-label="Play audio for ${escapeHtml(item.command)}"
+      title="Audio preview"
+    >
+      <svg
+        class="play-icon"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+
+      <svg
+        class="pause-icon"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
+      </svg>
+    </button>
+  `;
+}
+
+function createThumbnail(item) {
+  const placeholder = `
+    <img
+      class="thumbnail-placeholder"
+      src="avatar.png"
+      alt="Miniatura por defecto"
+      loading="lazy"
+    />
+  `;
+
+  if (!item.image) {
+    return `<div class="thumbnail-frame">${placeholder}</div>`;
+  }
+
+  return `
+    <div class="thumbnail-frame has-image">
+      <img
+        class="thumbnail"
+        src="${escapeHtml(item.image.src)}"
+        alt="${escapeHtml(item.image.alt || item.command)}"
+        loading="lazy"
+        onerror="this.parentElement.classList.add('thumbnail-missing')"
+      />
+      ${placeholder}
+    </div>
+  `;
+}
+
+function render(data) {
+  listEl.innerHTML = "";
+  let plural = "";
+  if (data.length > 0) {
+    if (data.length == 1) {
+      plural = " command";
+    } else {
+      plural = " commands";
+    }
+  }
+  counterEl.textContent = data.length ? data.length + plural : "";
+  emptyEl.hidden = data.length !== 0;
+
+  for (const item of data) {
+    const row = document.createElement("article");
+    row.className = "item";
+
+    row.innerHTML = `
+      ${createThumbnail(item)}
+
+      <div class="item-body">
+        <div class="item-content">
+          <p class="command">${escapeHtml(item.command)}</p>
+          <p class="description">${escapeHtml(item.description)}</p>
+        </div>
+
+        <div class="item-actions">
+          ${createAudioButton(item)}
+
+          <button
+            class="copy-affordance"
+            type="button"
+            aria-label="Copy ${escapeHtml(item.command)}"
+            title="Copy command"
+          >
+            <svg
+              class="copy-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+              <path
+                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+              ></path>
+            </svg>
+
+            <svg
+              class="check-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    `;
+
+    const audioButtonEl = row.querySelector(".audio-preview");
+    const copyButtonEl = row.querySelector(".copy-affordance");
+
+    if (audioButtonEl && item.audio) {
+      audioButtonEl.addEventListener("click", () => {
+        toggleAudio(item.audio.src, audioButtonEl);
+      });
+    }
+
+    copyButtonEl.addEventListener("click", async () => {
+      const ok = await copyToClipboard(item.command);
+      if (!ok) return;
+
+      if (copiedResetTimer) {
+        clearTimeout(copiedResetTimer);
+      }
+
+      const prev = listEl.querySelector(".item.copied");
+
+      if (prev && prev !== row) {
+        setCopiedState(prev, false);
+      }
+
+      setCopiedState(row, true);
+
+      copiedResetTimer = setTimeout(() => {
+        setCopiedState(row, false);
+      }, 1100);
+    });
+
+    listEl.appendChild(row);
+  }
+}
+
+function applyFilter() {
+  const term = searchEl.value.toLowerCase().trim();
+  render(
+    term
+      ? items.filter(i =>
+          i.command.toLowerCase().includes(term) ||
+          i.description.toLowerCase().includes(term)
+        )
+      : items
+  );
+}
+
+(async function init() {
+  const raw = await loadData();
+  items = raw.map(normalise).filter(i => i.command);
+  render(items);
+  searchEl.addEventListener("input", applyFilter);
+})().catch(err => {
+  emptyEl.hidden = false;
+  emptyEl.textContent = err.message;
+});

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>16Bit_HER0 Chat commands</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1 class="title">
+      <img
+        src="avatar.png"
+        alt="16Bit_HER0 avatar"
+        class="avatar"
+      />
+      <span>16Bit_HER0 Chat commands</span>
+    </h1>
+
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search command or description.." />
+      <span id="counter" class="counter"></span>
+    </div>
+  </header>
+
+  <main>
+    <div id="list" class="list"></div>
+    <div id="empty" class="empty" hidden>No results</div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

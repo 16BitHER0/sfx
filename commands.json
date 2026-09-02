@@ -1,0 +1,102 @@
+[
+  {
+    "command": "!comandoEjemplo",
+    "description": "Un comando normal",
+    "audio": null,
+    "image": null
+  },
+  {
+    "command": "!sfxSubGarg",
+    "description": "SFX - SUB - Garg",
+    "audio": {
+      "src": "audio/sub-garg.mp3"
+    },
+    "image": {
+      "src": "image/subnautica.png",
+      "alt": "Miniatura de !sfxSubGarg"
+    }
+  },
+  {
+    "command": "!sfxSubGhost",
+    "description": "SFX - SUB - Ghost",
+    "audio": {
+      "src": "audio/sub-ghost.mp3"
+    },
+    "image": {
+      "src": "image/subnautica.png",
+      "alt": "Miniatura de !sfxSubGhost"
+    }
+  },
+  {
+    "command": "!sfxXokCalla",
+    "description": "SFX - Xokas - Callarte",
+    "audio": {
+      "src": "audio/xok-calla.mp3"
+    },
+    "image": {
+      "src": "image/xokas.webp",
+      "alt": "Miniatura de !sfxXokCalla"
+    }
+  },
+  {
+    "command": "!sfxAnonA",
+    "description": "SFX - Arguiñano - AñoñA",
+    "audio": {
+      "src": "audio/argui-añoña.mp3"
+    },
+    "image": {
+      "src": "image/argui.webp",
+      "alt": "Miniatura de !sfxAnonA"
+    }
+  },
+  {
+    "command": "!sfxArguiNabo",
+    "description": "SFX - Arguiñano - Nabooo",
+    "audio": {
+      "src": "audio/argui-punta-del-nabooo.mp3"
+    },
+    "image": {
+      "src": "image/argui.webp",
+      "alt": "Miniatura de !sfxArguiNabo"
+    }
+  },
+  {
+    "command": "!sfxAliBat",
+    "description": "SFX - Ali G - Baterías",
+    "audio": {
+      "src": "audio/alig-baterias.mp3"
+    },
+    "image": {
+      "src": "image/ali-g.png",
+      "alt": "Miniatura de !sfxAliBat"
+    }
+  },
+  {
+    "command": "!sfxKneChupa",
+    "description": "SFX - KNekro - Chupa",
+    "audio": {
+      "src": "audio/kne-chupa.mp3"
+    },
+    "image": {
+      "src": "image/knekro.png",
+      "alt": "Miniatura de !sfxKneChupa"
+    }
+  },
+  {
+    "command": "!sfxAhh",
+    "description": "SFX - Memes - Ahh",
+    "audio": {
+      "src": "audio/ahh.mp3"
+    },
+    "image": {
+      "src": "image/memes.png",
+      "alt": "Miniatura de !sfxAhh"
+    }
+  },
+  {
+    "command": "!otroEjemplo",
+    "description": "Otro comando sin miniatura ni audio",
+    "audio": null,
+    "image": null
+  }
+]
