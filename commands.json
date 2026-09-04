@@ -2,12 +2,14 @@
   {
     "command": "!comandoEjemplo",
     "description": "Un comando normal",
+    "coins": 1000,
     "audio": null,
     "image": null
   },
   {
     "command": "!sfxSubGarg",
     "description": "SFX - SUB - Garg",
+    "coins": 1000,
     "audio": {
       "src": "audio/sub-garg.mp3"
     },
@@ -19,6 +21,7 @@
   {
     "command": "!sfxSubGhost",
     "description": "SFX - SUB - Ghost",
+    "coins": 1000,
     "audio": {
       "src": "audio/sub-ghost.mp3"
     },
@@ -30,6 +33,7 @@
   {
     "command": "!sfxXokCalla",
     "description": "SFX - Xokas - Callarte",
+    "coins": 1000,
     "audio": {
       "src": "audio/xok-calla.mp3"
     },
@@ -41,6 +45,7 @@
   {
     "command": "!sfxAnonA",
     "description": "SFX - Arguiñano - AñoñA",
+    "coins": 1000,
     "audio": {
       "src": "audio/argui-añoña.mp3"
     },
@@ -52,6 +57,7 @@
   {
     "command": "!sfxArguiNabo",
     "description": "SFX - Arguiñano - Nabooo",
+    "coins": 1000,
     "audio": {
       "src": "audio/argui-punta-del-nabooo.mp3"
     },
@@ -63,6 +69,7 @@
   {
     "command": "!sfxAliBat",
     "description": "SFX - Ali G - Baterías",
+    "coins": 1000,
     "audio": {
       "src": "audio/alig-baterias.mp3"
     },
@@ -74,6 +81,7 @@
   {
     "command": "!sfxKneChupa",
     "description": "SFX - KNekro - Chupa",
+    "coins": 1000,
     "audio": {
       "src": "audio/kne-chupa.mp3"
     },
@@ -85,6 +93,7 @@
   {
     "command": "!sfxAhh",
     "description": "SFX - Memes - Ahh",
+    "coins": 1000,
     "audio": {
       "src": "audio/ahh.mp3"
     },
@@ -96,6 +105,7 @@
   {
     "command": "!otroEjemplo",
     "description": "Otro comando sin miniatura ni audio",
+    "coins": 1000,
     "audio": null,
     "image": null
   }

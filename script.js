@@ -10,6 +10,29 @@ let copiedResetTimer = null;
 
 let activeAudio = null;
 let activeAudioButton = null;
+let activeAudioProgressFrame = null;
+
+function setAudioProgress(button, progress) {
+  button.style.setProperty("--audio-progress", `${progress}%`);
+}
+
+function stopAudioProgress() {
+  if (activeAudioProgressFrame) {
+    cancelAnimationFrame(activeAudioProgressFrame);
+    activeAudioProgressFrame = null;
+  }
+}
+
+function updateAudioProgress() {
+  if (!activeAudio || !activeAudioButton) return;
+
+  const progress = Number.isFinite(activeAudio.duration) && activeAudio.duration > 0
+    ? (activeAudio.currentTime / activeAudio.duration) * 100
+    : 0;
+
+  setAudioProgress(activeAudioButton, progress);
+  activeAudioProgressFrame = requestAnimationFrame(updateAudioProgress);
+}
 
 function normalise(item) {
   const image =
@@ -25,6 +48,7 @@ function normalise(item) {
   return {
     command: String(item.command ?? "").trim(),
     description: String(item.description ?? "").trim(),
+    coins: Number.isFinite(Number(item.coins)) ? Number(item.coins) : 1000,
     image,
     audio: item.audio?.src
       ? {
@@ -35,6 +59,8 @@ function normalise(item) {
 }
 
 function stopActiveAudio() {
+  stopAudioProgress();
+
   if (activeAudio) {
     activeAudio.pause();
     activeAudio.currentTime = 0;
@@ -44,6 +70,7 @@ function stopActiveAudio() {
   if (activeAudioButton) {
     activeAudioButton.classList.remove("playing");
     activeAudioButton.setAttribute("aria-label", "Play audio");
+    setAudioProgress(activeAudioButton, 0);
     activeAudioButton = null;
   }
 }
@@ -64,6 +91,7 @@ function toggleAudio(src, button) {
 
   button.classList.add("playing");
   button.setAttribute("aria-label", "Pause preview");
+  setAudioProgress(button, 0);
 
   audio.addEventListener("ended", () => {
     stopActiveAudio();
@@ -78,6 +106,8 @@ function toggleAudio(src, button) {
     console.error("Audio couldn't be played:", err);
     stopActiveAudio();
   });
+
+  updateAudioProgress();
 }
 
 function escapeHtml(str) {
@@ -155,6 +185,15 @@ function createAudioButton(item) {
   `;
 }
 
+function createCoinsBadge(item) {
+  return `
+    <span class="coins" title="${escapeHtml(item.coins.toLocaleString("es-ES"))} coins">
+      ${escapeHtml(item.coins.toLocaleString("es-ES"))}
+      <span class="coins-unit" aria-hidden="true">PX</span>
+    </span>
+  `;
+}
+
 function createThumbnail(item) {
   const placeholder = `
     <img
@@ -203,51 +242,50 @@ function render(data) {
     row.innerHTML = `
       ${createThumbnail(item)}
 
-      <div class="item-body">
-        <div class="item-content">
-          <p class="command">${escapeHtml(item.command)}</p>
-          <p class="description">${escapeHtml(item.description)}</p>
-        </div>
+      <div class="item-content">
+        <p class="command">${escapeHtml(item.command)}</p>
+        <p class="description">${escapeHtml(item.description)}</p>
+      </div>
 
-        <div class="item-actions">
-          ${createAudioButton(item)}
+      <div class="item-actions">
+        ${createCoinsBadge(item)}
+        ${createAudioButton(item)}
 
-          <button
-            class="copy-affordance"
-            type="button"
-            aria-label="Copy ${escapeHtml(item.command)}"
-            title="Copy command"
+        <button
+          class="copy-affordance"
+          type="button"
+          aria-label="Copy ${escapeHtml(item.command)}"
+          title="Copy command"
+        >
+          <svg
+            class="copy-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.25"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
           >
-            <svg
-              class="copy-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.25"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-              <path
-                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-              ></path>
-            </svg>
+            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+            <path
+              d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+            ></path>
+          </svg>
 
-            <svg
-              class="check-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M20 6L9 17l-5-5"></path>
-            </svg>
-          </button>
-        </div>
+          <svg
+            class="check-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M20 6L9 17l-5-5"></path>
+          </svg>
+        </button>
       </div>
     `;
 
