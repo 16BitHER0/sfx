@@ -83,7 +83,7 @@ h1 {
 input[type="search"] {
   flex: 1;
   min-width: 240px;
-  padding: 12px 14px;
+  padding: 8px 12px;
   font-size: 14px;
   border-radius: 14px;
   border: 1px solid var(--card-border);
@@ -114,22 +114,23 @@ main {
 
 .list {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: 1fr;
+  gap: 12px;
 }
 
 .item {
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: 0;
+  grid-template-columns: 84px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
   min-width: 0;
-  min-height: 300px;
-  padding: 0;
+  height: 70px;
+  padding: 8px 12px;
   border-radius: 8px;
   background: var(--card-bg);
-  border: 0px;
+  border: 0;
   backdrop-filter: blur(10px);
-  overflow: hidden;
+  overflow: visible;
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease,
@@ -148,11 +149,12 @@ main {
 .thumbnail-frame {
   display: grid;
   place-items: center;
-  width: 100%;
-  height: 100%;
+  width: 84px;
+  height: 54px;
   min-height: 0;
   overflow: hidden;
   position: relative;
+  border-radius: 6px;
   background: var(--thumbnail-bg);
 }
 
@@ -188,16 +190,9 @@ main {
   display: block;
 }
 
-.item-body {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  gap: 14px;
-  min-height: 0;
-  padding: 14px 12px 12px;
-}
-
 .item-content {
   min-width: 0;
+  overflow: hidden;
 }
 
 .command {
@@ -205,14 +200,19 @@ main {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 14px;
   color: #f3e8ff;
-  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .description {
-  margin: 6px 0 0;
+  margin: 5px 0 0;
   font-size: 13px;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .item-actions {
@@ -220,6 +220,39 @@ main {
   align-items: center;
   justify-content: flex-end;
   gap: 8px;
+}
+
+.coins {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 68px;
+  height: 42px;
+  padding: 0 9px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.18);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.coins::before {
+  content: none;
+}
+
+.coins-unit {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1px solid currentColor;
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 1;
 }
 
 .audio-preview,
@@ -240,11 +273,27 @@ main {
     color 0.15s ease;
 }
 
+.audio-preview {
+  --audio-progress: 0%;
+  --audio-bg: rgba(0, 0, 0, 0.18);
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--audio-bg), var(--audio-bg)) padding-box,
+    conic-gradient(var(--accent) var(--audio-progress), transparent 0) border-box;
+}
+
 .audio-preview:hover,
 .copy-affordance:hover {
   transform: scale(1.03);
   background: rgba(0, 0, 0, 0.32);
   color: #ffffff;
+}
+
+.audio-preview:hover {
+  --audio-bg: rgba(0, 0, 0, 0.32);
+  background:
+    linear-gradient(var(--audio-bg), var(--audio-bg)) padding-box,
+    conic-gradient(var(--accent) var(--audio-progress), transparent 0) border-box;
 }
 
 .audio-preview:active,
@@ -253,7 +302,9 @@ main {
 }
 
 .audio-preview.playing {
-  background: linear-gradient(135deg, var(--accent), var(--purple-1));
+  background:
+    linear-gradient(135deg, var(--accent), var(--purple-1)) padding-box,
+    conic-gradient(#ffffff var(--audio-progress), rgba(255, 255, 255, 0.18) 0) border-box;
   color: #fff;
 }
 
@@ -345,14 +396,36 @@ main {
   outline-offset: 3px;
 }
 
-@media (max-width: 920px) {
-  .list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 560px) {
-  .list {
-    grid-template-columns: 1fr;
+  .item {
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .thumbnail-frame {
+    width: 64px;
+    height: 54px;
+  }
+
+  .audio-preview,
+  .copy-affordance {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+  }
+
+  .coins {
+    min-width: 60px;
+    height: 36px;
+    padding: 0 7px;
+    border-radius: 12px;
+    font-size: 11px;
+  }
+
+  .coins-unit {
+    width: 17px;
+    height: 17px;
+    font-size: 7px;
   }
 }
