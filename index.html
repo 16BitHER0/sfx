@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Browse and copy 16Bit_HER0 Twitch chat commands, preview sound effects, and check their PX cost."
+    content="Browse and copy 16Bit_HER0 SFX commands, preview sound effects, and check their PX cost."
   />
-  <title>16Bit_HER0 Chat commands</title>
+  <title>16Bit_HER0 SFX</title>
 
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="16Bit_HER0 Chat commands" />
-  <meta property="og:title" content="16Bit_HER0 Chat commands" />
+  <meta property="og:site_name" content="16Bit_HER0 SFX" />
+  <meta property="og:title" content="16Bit_HER0 SFX" />
   <meta
     property="og:description"
-    content="Browse Twitch chat commands, preview sound effects, copy commands, and check their PX cost."
+    content="Browse SFX commands, preview sound effects, copy commands, and check their PX cost."
   />
   <meta property="og:url" content="https://16bither0.github.io/comandos-chat/" />
   <meta property="og:image" content="https://16bither0.github.io/comandos-chat/avatar.png" />
@@ -23,10 +23,10 @@
   <meta property="og:image:alt" content="16Bit_HER0 avatar" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="16Bit_HER0 Chat commands" />
+  <meta name="twitter:title" content="16Bit_HER0 SFX" />
   <meta
     name="twitter:description"
-    content="Browse Twitch chat commands, preview sound effects, copy commands, and check their PX cost."
+    content="Browse SFX commands, preview sound effects, copy commands, and check their PX cost."
   />
   <meta name="twitter:image" content="https://16bither0.github.io/comandos-chat/avatar.png" />
   <meta name="theme-color" content="#3B1A7D" />
@@ -41,18 +41,40 @@
   <header>
     <h1 class="title">
       <img
-        src="avatar.png"
+        src="avatar.gif"
         alt="16Bit_HER0 avatar"
         class="avatar"
       />
-      <span>16Bit_HER0 Chat commands</span>
+      <span>16Bit_HER0 SFX</span>
     </h1>
-
-    <div class="controls">
-      <input id="search" type="search" placeholder="Search command or description.." />
-      <span id="counter" class="counter"></span>
-    </div>
   </header>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search command or description.." />
+      <button
+        id="clear-search"
+        class="clear-search"
+        type="button"
+        aria-label="Clear search"
+        title="Clear search"
+        hidden
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <span id="counter" class="counter"></span>
+  </div>
 
   <main>
     <div id="list" class="list"></div>
