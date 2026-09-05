@@ -4,6 +4,12 @@ A compact web page for displaying Twitch chat commands with descriptions, previe
 
 The project is built with plain HTML, CSS, and JavaScript. Command data lives in `commands.json`, so the command list can be updated without editing the page markup.
 
+## Live Site
+
+The project is available at:
+
+https://16bither0.github.io/comandos-chat/
+
 ## Features
 
 - Search commands by name or description.
