@@ -1,45 +1,74 @@
 [
   {
-    "command": "!comandoEjemplo",
-    "description": "Un comando normal",
-    "coins": 1000,
-    "audio": null,
-    "image": null
-  },
-  {
-    "command": "!sfxSubGarg",
-    "description": "SFX - SUB - Garg",
+    "command": "!sfxAliAlu",
+    "description": "SFX - Ali G - Alucino",
     "coins": 1000,
     "audio": {
-      "src": "audio/sub-garg.mp3"
+      "src": "audio/sfxaligalu.mp3"
     },
     "image": {
-      "src": "image/subnautica.png",
-      "alt": "Miniatura de !sfxSubGarg"
+      "src": "image/ali-g.png",
+      "alt": "Miniatura de !sfxAliAlu"
     }
   },
   {
-    "command": "!sfxSubGhost",
-    "description": "SFX - SUB - Ghost",
+    "command": "!sfxAliBat",
+    "description": "SFX - Ali G - Baterias",
     "coins": 1000,
     "audio": {
-      "src": "audio/sub-ghost.mp3"
+      "src": "audio/sfxalibat.mp3"
     },
     "image": {
-      "src": "image/subnautica.png",
-      "alt": "Miniatura de !sfxSubGhost"
+      "src": "image/ali-g.png",
+      "alt": "Miniatura de !sfxAliBat"
     }
   },
   {
-    "command": "!sfxXokCalla",
-    "description": "SFX - Xokas - Callarte",
+    "command": "!sfxAliCom",
+    "description": "SFX - Ali G - Comentado",
     "coins": 1000,
     "audio": {
-      "src": "audio/xok-calla.mp3"
+      "src": "audio/sfxalicom.mp3"
     },
     "image": {
-      "src": "image/xokas.webp",
-      "alt": "Miniatura de !sfxXokCalla"
+      "src": "image/ali-g.png",
+      "alt": "Miniatura de !sfxAliCom"
+    }
+  },
+  {
+    "command": "!sfxAliCaba",
+    "description": "SFX - Ali G - Caballo",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxaligcaba.mp3"
+    },
+    "image": {
+      "src": "image/ali-g.png",
+      "alt": "Miniatura de !sfxAliCaba"
+    }
+  },
+  {
+    "command": "!sfxAliPring",
+    "description": "SFX - Ali G - Pringao",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxalipring.mp3"
+    },
+    "image": {
+      "src": "image/ali-g.png",
+      "alt": "Miniatura de !sfxAliPring"
+    }
+  },
+  {
+    "command": "!sfxAliTonto",
+    "description": "SFX - Ali G - Tonto",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxalitonto.mp3"
+    },
+    "image": {
+      "src": "image/ali-g.png",
+      "alt": "Miniatura de !sfxAliTonto"
     }
   },
   {
@@ -47,10 +76,10 @@
     "description": "SFX - Arguiñano - AñoñA",
     "coins": 1000,
     "audio": {
-      "src": "audio/argui-añoña.mp3"
+      "src": "audio/sfxanona.mp3"
     },
     "image": {
-      "src": "image/argui.webp",
+      "src": "image/argui.png",
       "alt": "Miniatura de !sfxAnonA"
     }
   },
@@ -59,23 +88,212 @@
     "description": "SFX - Arguiñano - Nabooo",
     "coins": 1000,
     "audio": {
-      "src": "audio/argui-punta-del-nabooo.mp3"
+      "src": "audio/sfxarguinabo.mp3"
     },
     "image": {
-      "src": "image/argui.webp",
+      "src": "image/argui.png",
       "alt": "Miniatura de !sfxArguiNabo"
     }
   },
   {
-    "command": "!sfxAliBat",
-    "description": "SFX - Ali G - Baterías",
+    "command": "!sfxArguiPorno",
+    "description": "SFX - Arguiñano - RePorno",
     "coins": 1000,
     "audio": {
-      "src": "audio/alig-baterias.mp3"
+      "src": "audio/sfxarguiporno.mp3"
     },
     "image": {
-      "src": "image/ali-g.png",
-      "alt": "Miniatura de !sfxAliBat"
+      "src": "image/argui.png",
+      "alt": "Miniatura de !sfxArguiPorno"
+    }
+  },
+  {
+    "command": "!sfxChiqui1",
+    "description": "SFX - Chiquito - 1",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxchiqui1.mp3"
+    },
+    "image": null
+  },
+  {
+    "command": "!sfxDross",
+    "description": "SFX - Dross - Sound",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxdross.mp3"
+    },
+    "image": {
+      "src": "image/dross.png",
+      "alt": "Miniatura de !sfxDross"
+    }
+  },
+  {
+    "command": "!sfxDrossClin",
+    "description": "SFX - Dross - Clin!",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxclin.mp3"
+    },
+    "image": {
+      "src": "image/dross.png",
+      "alt": "Miniatura de !sfxDrossClin"
+    }
+  },
+  {
+    "command": "!sfxDrossEmpa",
+    "description": "SFX - Dross - Empanadas",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxdrossempa.mp3"
+    },
+    "image": {
+      "src": "image/dross.png",
+      "alt": "Miniatura de !sfxDrossEmpa"
+    }
+  },
+  {
+    "command": "!sfxSubBlop",
+    "description": "SFX - SUB - Blop",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxsubblop.mp3"
+    },
+    "image": {
+      "src": "image/subnautica.png",
+      "alt": "Miniatura de !sfxSubBlop"
+    }
+  },
+  {
+    "command": "!sfxSubCrab",
+    "description": "SFX - SUB - Crab",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxsubcrab.mp3"
+    },
+    "image": {
+      "src": "image/subnautica.png",
+      "alt": "Miniatura de !sfxSubCrab"
+    }
+  },
+  {
+    "command": "!sfxSubCrash",
+    "description": "SFX - SUB - Crash",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxsubcrash.mp3"
+    },
+    "image": {
+      "src": "image/subnautica.png",
+      "alt": "Miniatura de !sfxSubCrash"
+    }
+  },
+  {
+    "command": "!sfxsubgarg",
+    "description": "SFX - SUB - Garg",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxsubgarg.mp3"
+    },
+    "image": {
+      "src": "image/subnautica.png",
+      "alt": "Miniatura de !sfxsubgarg"
+    }
+  },
+  {
+    "command": "!sfxSubGhost",
+    "description": "SFX - SUB - Ghost",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxsubghost.mp3"
+    },
+    "image": {
+      "src": "image/subnautica.png",
+      "alt": "Miniatura de !sfxSubGhost"
+    }
+  },
+  {
+    "command": "!sfxSubLevi",
+    "description": "SFX - SUB - Leviathans",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxsublevi.mp3"
+    },
+    "image": {
+      "src": "image/subnautica.png",
+      "alt": "Miniatura de !sfxSubLevi"
+    }
+  },
+  {
+    "command": "!sfxMemeComer",
+    "description": "SFX - MEMES - Sin Comer",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxmemecomer.mp3"
+    },
+    "image": {
+      "src": "image/memes.png",
+      "alt": "Miniatura de !sfxMemeComer"
+    }
+  },
+  {
+    "command": "!sfxMemeOu",
+    "description": "SFX - MEMES - Disturbed",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxmemeou.mp3"
+    },
+    "image": {
+      "src": "image/memes.png",
+      "alt": "Miniatura de !sfxMemeOu"
+    }
+  },
+  {
+    "command": "!sfxMemeProwler",
+    "description": "SFX - MEMES - Prowler",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxmemeprowler.mp3"
+    },
+    "image": {
+      "src": "image/memes.png",
+      "alt": "Miniatura de !sfxMemeProwler"
+    }
+  },
+  {
+    "command": "!sfxMemeSali",
+    "description": "SFX - MEMES - Salí de ahi",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxmemesali.mp3"
+    },
+    "image": {
+      "src": "image/memes.png",
+      "alt": "Miniatura de !sfxMemeSali"
+    }
+  },
+  {
+    "command": "!sfxMemeSole",
+    "description": "SFX - MEMES - Sole",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxmemesole.mp3"
+    },
+    "image": {
+      "src": "image/memes.png",
+      "alt": "Miniatura de !sfxMemeSole"
+    }
+  },
+  {
+    "command": "!sfxMemeYippie",
+    "description": "SFX - MEMES - Yippieee",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxmemeyippie.mp3"
+    },
+    "image": {
+      "src": "image/memes.png",
+      "alt": "Miniatura de !sfxMemeYippie"
     }
   },
   {
@@ -83,7 +301,7 @@
     "description": "SFX - KNekro - Chupa",
     "coins": 1000,
     "audio": {
-      "src": "audio/kne-chupa.mp3"
+      "src": "audio/sfxknechupa.mp3"
     },
     "image": {
       "src": "image/knekro.png",
@@ -91,22 +309,111 @@
     }
   },
   {
-    "command": "!sfxAhh",
-    "description": "SFX - Memes - Ahh",
+    "command": "!sfxKnePali",
+    "description": "SFX - KNekro - Paliza",
     "coins": 1000,
     "audio": {
-      "src": "audio/ahh.mp3"
+      "src": "audio/sfxknepali.mp3"
     },
     "image": {
-      "src": "image/memes.png",
-      "alt": "Miniatura de !sfxAhh"
+      "src": "image/knekro.png",
+      "alt": "Miniatura de !sfxKnePali"
     }
   },
   {
-    "command": "!otroEjemplo",
-    "description": "Otro comando sin miniatura ni audio",
+    "command": "!sfxKneRobo",
+    "description": "SFX - KNekro - Robotin",
     "coins": 1000,
-    "audio": null,
-    "image": null
+    "audio": {
+      "src": "audio/sfxknerobo.mp3"
+    },
+    "image": {
+      "src": "image/knekro.png",
+      "alt": "Miniatura de !sfxKneRobo"
+    }
+  },
+  {
+    "command": "!sfxKneType",
+    "description": "SFX - KNekro - TypeGame",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxknetype.mp3"
+    },
+    "image": {
+      "src": "image/knekro.png",
+      "alt": "Miniatura de !sfxKneType"
+    }
+  },
+  {
+    "command": "!sfxXokx264",
+    "description": "SFX - Xokas - x264",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxxokx264.mp3"
+    },
+    "image": {
+      "src": "image/xokas.png",
+      "alt": "Miniatura de !sfxXokx264"
+    }
+  },
+  {
+    "command": "!sfxXokCalla",
+    "description": "SFX - Xokas - Callarte",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxxokcalla.mp3"
+    },
+    "image": {
+      "src": "image/xokas.png",
+      "alt": "Miniatura de !sfxXokCalla"
+    }
+  },
+  {
+    "command": "!sfxXokMalito",
+    "description": "SFX - Xokas - Malito",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxxokmalito.mp3"
+    },
+    "image": {
+      "src": "image/xokas.png",
+      "alt": "Miniatura de !sfxXokMalito"
+    }
+  },
+  {
+    "command": "!sfxXokMax",
+    "description": "SFX - Xokas - Max Lvl",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxxokmax.mp3"
+    },
+    "image": {
+      "src": "image/xokas.png",
+      "alt": "Miniatura de !sfxXokMax"
+    }
+  },
+  {
+    "command": "!sfxXokMecha",
+    "description": "SFX - Xokas - Mecha",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxxokmecha.mp3"
+    },
+    "image": {
+      "src": "image/xokas.png",
+      "alt": "Miniatura de !sfxXokMecha"
+    }
+  },
+  {
+    "command": "!sfxXokTrabaja",
+    "description": "SFX - Xokas - Trabaja",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxxoktrabaja.mp3"
+    },
+    "image": {
+      "src": "image/xokas.png",
+      "alt": "Miniatura de !sfxXokTrabaja"
+    }
   }
 ]
