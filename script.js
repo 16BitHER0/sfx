@@ -3,7 +3,9 @@ const DATA_URL = "commands.json";
 const listEl = document.getElementById("list");
 const emptyEl = document.getElementById("empty");
 const searchEl = document.getElementById("search");
+const clearSearchEl = document.getElementById("clear-search");
 const counterEl = document.getElementById("counter");
+const controlsEl = document.querySelector(".controls");
 
 let items = [];
 let copiedResetTimer = null;
@@ -11,6 +13,7 @@ let copiedResetTimer = null;
 let activeAudio = null;
 let activeAudioButton = null;
 let activeAudioProgressFrame = null;
+let stickyCheckFrame = null;
 
 function setAudioProgress(button, progress) {
   button.style.setProperty("--audio-progress", `${progress}%`);
@@ -32,6 +35,17 @@ function updateAudioProgress() {
 
   setAudioProgress(activeAudioButton, progress);
   activeAudioProgressFrame = requestAnimationFrame(updateAudioProgress);
+}
+
+function updateStickySearchState() {
+  stickyCheckFrame = null;
+  const isStuck = controlsEl.getBoundingClientRect().top <= 0;
+  controlsEl.classList.toggle("is-stuck", isStuck);
+}
+
+function queueStickySearchStateUpdate() {
+  if (stickyCheckFrame) return;
+  stickyCheckFrame = requestAnimationFrame(updateStickySearchState);
 }
 
 function normalise(item) {
@@ -198,7 +212,7 @@ function createThumbnail(item) {
   const placeholder = `
     <img
       class="thumbnail-placeholder"
-      src="avatar.png"
+      src="avatar.gif"
       alt="Miniatura por defecto"
       loading="lazy"
     />
@@ -325,6 +339,8 @@ function render(data) {
 
 function applyFilter() {
   const term = searchEl.value.toLowerCase().trim();
+  clearSearchEl.hidden = searchEl.value.length === 0;
+
   render(
     term
       ? items.filter(i =>
@@ -340,6 +356,14 @@ function applyFilter() {
   items = raw.map(normalise).filter(i => i.command);
   render(items);
   searchEl.addEventListener("input", applyFilter);
+  clearSearchEl.addEventListener("click", () => {
+    searchEl.value = "";
+    applyFilter();
+    searchEl.focus();
+  });
+  window.addEventListener("scroll", queueStickySearchStateUpdate, { passive: true });
+  window.addEventListener("resize", queueStickySearchStateUpdate);
+  updateStickySearchState();
 })().catch(err => {
   emptyEl.hidden = false;
   emptyEl.textContent = err.message;

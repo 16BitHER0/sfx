@@ -42,13 +42,13 @@ body {
 }
 
 header {
-  padding: 32px 20px 20px;
+  padding: 32px 20px 10px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
 h1 {
-  margin: 0 0 16px;
+  margin: 0;
   font-size: 22px;
   font-family: "Orbitron", sans-serif;
   font-optical-sizing: auto;
@@ -63,8 +63,10 @@ h1 {
 }
 
 .avatar {
-  width: 42px;
-  height: 42px;
+  min-width: 64px;
+  min-height: 64px;
+  width: 64px;
+  height: 64px;
   border-radius: 12px;
   object-fit: cover;
   background: rgba(255, 255, 255, 0.1);
@@ -74,16 +76,52 @@ h1 {
 }
 
 .controls {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background: transparent;
+  transition:
+    background 0.16s ease,
+    box-shadow 0.16s ease,
+    backdrop-filter 0.16s ease;
+}
+
+.controls.is-stuck {
+  background: rgba(22, 13, 55, 0.86);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(14px);
+  animation: search-stick-in 0.16s ease-out;
+}
+
+@keyframes search-stick-in {
+  from {
+    background: transparent;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  to {
+    background: rgba(22, 13, 55, 0.86);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  }
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 240px;
 }
 
 input[type="search"] {
-  flex: 1;
-  min-width: 240px;
+  width: 100%;
   padding: 8px 12px;
+  padding-right: 42px;
   font-size: 14px;
   border-radius: 14px;
   border: 1px solid var(--card-border);
@@ -99,6 +137,50 @@ input[type="search"]::placeholder {
 
 input[type="search"]:focus {
   border-color: var(--text-muted);
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.clear-search {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.clear-search:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.clear-search:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.clear-search svg {
+  width: 17px;
+  height: 17px;
+}
+
+.clear-search:focus-visible {
+  outline: 2px solid rgba(199, 125, 255, 0.75);
+  outline-offset: 2px;
 }
 
 .counter {
@@ -397,6 +479,18 @@ main {
 }
 
 @media (max-width: 560px) {
+  header {
+    padding: 24px 14px 12px;
+  }
+
+  .controls {
+    padding: 10px 14px;
+  }
+
+  .search-wrap {
+    min-width: 0;
+  }
+
   .item {
     grid-template-columns: 64px minmax(0, 1fr) auto;
     gap: 10px;
