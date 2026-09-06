@@ -15,6 +15,7 @@ let activeAudio = null;
 let activeAudioButton = null;
 let activeAudioProgressFrame = null;
 let stickyCheckFrame = null;
+let columnView = "1";
 
 function setAudioProgress(button, progress) {
   button.style.setProperty("--audio-progress", `${progress}%`);
@@ -49,14 +50,26 @@ function queueStickySearchStateUpdate() {
   stickyCheckFrame = requestAnimationFrame(updateStickySearchState);
 }
 
-function setColumnView(columns) {
-  const value = columns === "1" ? "1" : "2";
+function applyColumnView(value) {
+  columnView = value;
 
   listEl.classList.toggle("columns-1", value === "1");
   listEl.classList.toggle("columns-2", value === "2");
 
   for (const button of viewButtonEls) {
     button.setAttribute("aria-pressed", String(button.dataset.columns === value));
+  }
+}
+
+function setColumnView(columns, options = {}) {
+  const value = columns === "1" ? "1" : "2";
+
+  if (value === columnView) return;
+
+  if (options.animate && document.startViewTransition) {
+    document.startViewTransition(() => applyColumnView(value));
+  } else {
+    applyColumnView(value);
   }
 
   localStorage.setItem("sfx-column-view", value);
@@ -263,9 +276,10 @@ function render(data) {
   counterEl.textContent = data.length ? data.length + plural : "";
   emptyEl.hidden = data.length !== 0;
 
-  for (const item of data) {
+  for (const [index, item] of data.entries()) {
     const row = document.createElement("article");
     row.className = "item";
+    row.style.viewTransitionName = `sfx-item-${index}`;
 
     row.innerHTML = `
       ${createThumbnail(item)}
@@ -369,6 +383,7 @@ function applyFilter() {
   const raw = await loadData();
   items = raw.map(normalise).filter(i => i.command);
   setColumnView(localStorage.getItem("sfx-column-view") || "1");
+  applyColumnView(columnView);
   render(items);
   searchEl.addEventListener("input", applyFilter);
   clearSearchEl.addEventListener("click", () => {
@@ -378,7 +393,7 @@ function applyFilter() {
   });
   for (const button of viewButtonEls) {
     button.addEventListener("click", () => {
-      setColumnView(button.dataset.columns);
+      setColumnView(button.dataset.columns, { animate: true });
     });
   }
   window.addEventListener("scroll", queueStickySearchStateUpdate, { passive: true });
