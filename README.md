@@ -8,7 +8,7 @@ The project is built with plain HTML, CSS, and JavaScript. Command data lives in
 
 The project is available at:
 
-https://16bither0.github.io/comandos-chat/
+https://16bither0.github.io/sfx/
 
 ## Features
 
