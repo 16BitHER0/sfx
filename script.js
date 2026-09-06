@@ -6,6 +6,7 @@ const searchEl = document.getElementById("search");
 const clearSearchEl = document.getElementById("clear-search");
 const counterEl = document.getElementById("counter");
 const controlsEl = document.querySelector(".controls");
+const viewButtonEls = document.querySelectorAll(".view-button");
 
 let items = [];
 let copiedResetTimer = null;
@@ -46,6 +47,19 @@ function updateStickySearchState() {
 function queueStickySearchStateUpdate() {
   if (stickyCheckFrame) return;
   stickyCheckFrame = requestAnimationFrame(updateStickySearchState);
+}
+
+function setColumnView(columns) {
+  const value = columns === "1" ? "1" : "2";
+
+  listEl.classList.toggle("columns-1", value === "1");
+  listEl.classList.toggle("columns-2", value === "2");
+
+  for (const button of viewButtonEls) {
+    button.setAttribute("aria-pressed", String(button.dataset.columns === value));
+  }
+
+  localStorage.setItem("sfx-column-view", value);
 }
 
 function normalise(item) {
@@ -354,6 +368,7 @@ function applyFilter() {
 (async function init() {
   const raw = await loadData();
   items = raw.map(normalise).filter(i => i.command);
+  setColumnView(localStorage.getItem("sfx-column-view") || "1");
   render(items);
   searchEl.addEventListener("input", applyFilter);
   clearSearchEl.addEventListener("click", () => {
@@ -361,6 +376,11 @@ function applyFilter() {
     applyFilter();
     searchEl.focus();
   });
+  for (const button of viewButtonEls) {
+    button.addEventListener("click", () => {
+      setColumnView(button.dataset.columns);
+    });
+  }
   window.addEventListener("scroll", queueStickySearchStateUpdate, { passive: true });
   window.addEventListener("resize", queueStickySearchStateUpdate);
   updateStickySearchState();
