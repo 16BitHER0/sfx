@@ -35,6 +35,16 @@ body {
   min-height: 100vh;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--text-main);
+  background: var(--purple-4);
+}
+
+/* Avoid recalculating background on transition animations */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background:
     radial-gradient(
       circle at top center,
@@ -43,7 +53,6 @@ body {
       var(--purple-3) 55%,
       var(--purple-4) 80%
     );
-  background-attachment: fixed;
 }
 
 header {
