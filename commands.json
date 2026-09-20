@@ -116,7 +116,7 @@
     },
     "image": {
       "src": "image/Chiquito.png",
-      "alt": "Miniatura de !sfxChiqui1"
+      "alt": "Miniatura de !sfxchiqui1"
   },
   {
     "command": "!sfxDross",
