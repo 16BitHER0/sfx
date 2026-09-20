@@ -114,7 +114,9 @@
     "audio": {
       "src": "audio/sfxchiqui1.mp3"
     },
-    "image": null
+    "image": {
+      "src": "image/Chiquito.png",
+      "alt": "Miniatura de !sfxChiqui1"
   },
   {
     "command": "!sfxDross",
