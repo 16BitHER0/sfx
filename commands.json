@@ -151,7 +151,7 @@
       "src": "audio/sfxBoratExito.mp3"
     },
     "image": {
-      "src": "image/borat.png",
+      "src": "image/Borat.png",
       "alt": "Miniatura de !sfxBoratExito"
     }
   },
@@ -163,7 +163,7 @@
       "src": "audio/sfxBoratNunca.mp3"
     },
     "image": {
-      "src": "image/borat.png",
+      "src": "image/Borat.png",
       "alt": "Miniatura de !sfxBoratNunca"
     }
   },
@@ -175,7 +175,7 @@
       "src": "audio/sfxBoratQno.mp3"
     },
     "image": {
-      "src": "image/borat.png",
+      "src": "image/Borat.png",
       "alt": "Miniatura de !sfxBoratQno"
     }
   },
@@ -187,7 +187,7 @@
       "src": "audio/sfxBoratR.mp3"
     },
     "image": {
-      "src": "image/borat.png",
+      "src": "image/Borat.png",
       "alt": "Miniatura de !sfxBoratR"
     }
   },
