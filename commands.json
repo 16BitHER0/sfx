@@ -124,7 +124,7 @@
     "description": "SFX - Arguiñano - Nabooo",
     "coins": 1000,
     "audio": {
-      "src": "audio/sfxarguinabo.mp3"
+      "src": "audio/sfxArguiNabo.mp3"
     },
     "image": {
       "src": "image/argui.png",
