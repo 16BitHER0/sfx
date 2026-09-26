@@ -72,6 +72,18 @@
     }
   },
   {
+    "command": "!sfxArguiRallas",
+    "description": "SFX - Arguiñano - 2 Rallas",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxArguiRallas.mp3"
+    },
+    "image": {
+      "src": "image/argui.png",
+      "alt": "Miniatura de !sfxArguiRallas"
+    }
+  },
+  {
     "command": "!sfxAnonA",
     "description": "SFX - Arguiñano - AñoñA",
     "coins": 1000,
@@ -81,6 +93,30 @@
     "image": {
       "src": "image/argui.png",
       "alt": "Miniatura de !sfxAnonA"
+    }
+  },
+    {
+    "command": "!sfxArguiCuchi",
+    "description": "SFX - Arguiñano - Cuchillo",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxArguiCuchi.mp3"
+    },
+    "image": {
+      "src": "image/argui.png",
+      "alt": "Miniatura de !sfxArguiCuchi"
+    }
+  },
+    {
+    "command": "!sfxArguiFurros",
+    "description": "SFX - Arguiñano - Furros",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxArguiFurros.mp3"
+    },
+    "image": {
+      "src": "image/argui.png",
+      "alt": "Miniatura de !sfxArguiFurros"
     }
   },
   {
