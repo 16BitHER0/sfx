@@ -143,6 +143,54 @@
       "alt": "Miniatura de !sfxArguiPorno"
     }
   },
+    {
+    "command": "!sfxBoratExito",
+    "description": "SFX - Borat - Gran Exito",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxBoratExito.mp3"
+    },
+    "image": {
+      "src": "image/borat.png",
+      "alt": "Miniatura de !sfxBoratExito"
+    }
+  },
+    {
+    "command": "!sfxBoratNunca",
+    "description": "SFX - Borat - Nunca cojes esto",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxBoratNunca.mp3"
+    },
+    "image": {
+      "src": "image/borat.png",
+      "alt": "Miniatura de !sfxBoratNunca"
+    }
+  },
+    {
+    "command": "!sfxBoratQno",
+    "description": "SFX - Borat - Que No",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxBoratQno.mp3"
+    },
+    "image": {
+      "src": "image/borat.png",
+      "alt": "Miniatura de !sfxBoratQno"
+    }
+  },
+    {
+    "command": "!sfxBoratR",
+    "description": "SFX - Borat - Retraso",
+    "coins": 1000,
+    "audio": {
+      "src": "audio/sfxBoratR.mp3"
+    },
+    "image": {
+      "src": "image/borat.png",
+      "alt": "Miniatura de !sfxBoratR"
+    }
+  },
   {
     "command": "!sfxChiqui1",
     "description": "SFX - Chiquito - 1",
